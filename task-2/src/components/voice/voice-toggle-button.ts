@@ -18,16 +18,24 @@ class VoiceToggleButton extends HTMLElement {
           display: flex;
           width: 3.5rem;
           height: 3.5rem;                    
-          color: #282828;
+          fill: #2f2f2f;
           background-color: #06e0a5;          
           display: inline-block;
           border-radius: 50%;
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2);
           border: 0;
           position: relative;
           cursor: pointer;
+          transition: box-shadow .3s ease;
         }
 
+        ${VoiceToggleButton.elementTitle} button:hover,
+        ${VoiceToggleButton.elementTitle} button:focus
+        {
+          outline: none;
+          box-shadow: 0 5px 20px -5px rgba(30,75,90,0.6), 0 3px 4px -2px rgba(0,0,0,0.3);
+        }
+        
         ${VoiceToggleButton.elementTitle} svg {
           width: 32px;
           height: 32px;

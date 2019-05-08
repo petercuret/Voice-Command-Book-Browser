@@ -5,7 +5,11 @@ class SearchBar extends HTMLElement {
   getElementStyling()  {
     const style = `
       <style>
-          ${SearchBar.elementTitle} .input-container {
+          ${SearchBar.elementTitle} {
+            text-align: center;
+          }
+
+          ${SearchBar.elementTitle} .input-container {            
             position: relative;
             display: inline-block;
             width: calc(100% - 4.5rem);
@@ -27,7 +31,6 @@ class SearchBar extends HTMLElement {
     this.innerHTML = `
       ${this.getElementStyling()}
       <form autocomplete="off">
-        <search-label></search-label>
         <span class="input-container">
           <search-input></search-input>
           <voice-toggle-button></voice-toggle-button>

@@ -10,17 +10,16 @@ class BookCover extends HTMLElement {
       <style>
         ${BookCover.elementTitle} figure {
           margin: .5rem 0 0 0;
-          min-width: 200px;
         }
         ${BookCover.elementTitle} img {
-          height: 300px;
+          height: 25vw;
         }        
       </style>`;      
     return style
   }
 
   render() {
-    const bookCoverURL = getBookCoverURL(this.dataCoverID, 'M');
+    const bookCoverURL = getBookCoverURL(this.dataCoverID);
 
     this.innerHTML = `
       ${this.getElementStyling()}

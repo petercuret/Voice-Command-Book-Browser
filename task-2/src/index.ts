@@ -6,7 +6,6 @@ import './components/book/book-single';
 import './components/bookCarousel/book-carousel';
 import './components/spinnerLoading/spinner-loading';
 import './components/search/search-bar';
-import './components/search/search-label';
 import './components/search/search-input';
 import './components/search/search-timestamp';
 import './components/voice/voice-toggle-button';
