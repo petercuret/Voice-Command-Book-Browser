@@ -13,3 +13,4 @@ import './components/voice/voice-toggle-button';
 
 // Import interactionHandlers which will initialise interactive behaviour
 import './interactionHandlers/search';
+import './interactionHandlers/voice';

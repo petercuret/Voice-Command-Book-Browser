@@ -17,7 +17,7 @@ class SearchBar extends HTMLElement {
             position: absolute;
             right: 0;
             top: 0;
-          }
+          }   
         }
       </style>`;      
     return style

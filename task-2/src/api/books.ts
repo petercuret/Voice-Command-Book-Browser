@@ -4,7 +4,7 @@ const BOOKS_API_URL = 'http://openlibrary.org/search.json?title=';
 async function fetchBooksFromAPI(searchQuery : string) {
   const endpoint = `${BOOKS_API_URL}${searchQuery}`;
   const results = await fetch(endpoint);
-  console.log(endpoint);
+  // TODO: Add error handling here
   const resultsJSON = await results.json();
   return resultsJSON.docs;
 }

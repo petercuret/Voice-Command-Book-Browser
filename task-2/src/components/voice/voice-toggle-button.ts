@@ -37,11 +37,16 @@ class VoiceToggleButton extends HTMLElement {
     return style
   }
 
+  emitToggleEvent() {
+    var recordingEvent = new CustomEvent("recording", { detail: { isRecording: this.isRecording } });
+    window.dispatchEvent(recordingEvent);
+  }
+
   toggleRecording = () => {
     this.isRecording = !this.isRecording;
     this.render();
     this.bindToggleEvent();
-    
+    this.emitToggleEvent();
   }
 
   renderIsRecordingIcon() {    
