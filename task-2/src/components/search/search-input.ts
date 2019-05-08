@@ -2,46 +2,24 @@ import debounce from '../../utils/debounce';
 
 class SearchInput extends HTMLElement {
   static elementTitle : string = 'search-input';
-  
+
   getElementStyling()  {
     const style = `
       <style>
-        ${SearchInput.elementTitle} form {
-          font-family: 'Roboto', sans-serif;    
-          font-weight: 300;
-          line-height: 1.3
-          margin: 2rem 0 0 0;
-          font-size: 32px;          
-        }
-      
-        ${SearchInput.elementTitle} input[type=text] {
-            font-size: 18px;
-            padding: 1rem;
-            box-sizing: border-box;
-            margin: 0.5rem 0 0 0;
-            width: 100%;
-            max-width: 720px;   
-            display: block;         
-          }
+        ${SearchInput.elementTitle} input {
+          font-size: 18px;
+          padding: 1rem;
+          box-sizing: border-box;
+          width: 100%;            
+          display: block;    
         }
       </style>`;      
     return style
   }
-
-  render() {
-    this.innerHTML = `
-      ${this.getElementStyling()}
-      <form autocomplete="off">
-        <label for="search">Search for books</label>
-        <input type="text" id="search" name="search">
-      </form>
-    `;
-  }
-
+  
   searchFunction = debounce((event) => {
-    var searchEvent = new CustomEvent("search", { 
-      detail: { searchQuery: event.target.value } 
-    });
+    const searchQuery = event.target.value;
+    var searchEvent = new CustomEvent("search", { detail: { searchQuery } });
     window.dispatchEvent(searchEvent);
   }, 300, false);
 
@@ -52,6 +30,13 @@ class SearchInput extends HTMLElement {
   connectedCallback() {
     this.render();
     this.bindInputEvent();
+  }
+
+  render() {
+    this.innerHTML = `
+      ${this.getElementStyling()}
+      <input type="text" id="search" name="search">
+    `;
   }
 }
 

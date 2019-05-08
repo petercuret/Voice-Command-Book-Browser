@@ -1,31 +1,35 @@
 import { getBooks } from './api/books';
+import { getParamsFromUrl } from './utils/params';
 import Book from './models/book';
+import BookSingle from './components/book/book-single';
 import './components/book/book-cover';
 import './components/book/book-title';
 import './components/book/book-author';
-import BookSingle from './components/book/book-single';
 import './components/book/book-single';
 import './components/bookCarousel/book-carousel';
 import './components/spinnerLoading/spinner-loading';
+import './components/search/search-bar';
+import './components/search/search-label';
 import './components/search/search-input';
 import './components/search/search-timestamp';
+import './components/voice/voice-toggle-button';
 
-window.addEventListener('load', async () => {
-  addCarouselToDom();
-});
+window.addEventListener('load', async () => {});
 
 window.addEventListener('search', async function (event : CustomEvent) {
   const { searchQuery }  = event.detail;
-  if(searchQuery) {
-    removeBooksFromDom();
+  search(searchQuery);
+}, false);
+
+async function search(searchQuery : string) {
+  removeBooksFromDom();
+
+  if(searchQuery) {    
     addSpinnerToDom();
     await addBooksToDom(searchQuery);
-    removeSpinnerFromDom();  
+    removeSpinnerFromDom();
   }
-  else {
-    removeBooksFromDom();
-  }
-}, false);
+}
 
 function getBookComponent(book : Book) {
   const bookSingle = <BookSingle>document.createElement('book-single');
@@ -33,12 +37,6 @@ function getBookComponent(book : Book) {
   bookSingle.dataAuthor = book.author;
   bookSingle.dataCoverID = book.coverID;
   return bookSingle
-}
-
-function addCarouselToDom() {
-  const main = document.querySelector('main');
-  const bookCarousel = document.createElement('book-carousel');
-  main.appendChild(bookCarousel);
 }
 
 function removeBooksFromDom() {
