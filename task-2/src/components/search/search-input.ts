@@ -43,7 +43,7 @@ class SearchInput extends HTMLElement {
       detail: { searchQuery: event.target.value } 
     });
     window.dispatchEvent(searchEvent);
-  }, 400, false);
+  }, 300, false);
 
   bindInputEvent() {
     this.querySelector('input').oninput = this.searchFunction;

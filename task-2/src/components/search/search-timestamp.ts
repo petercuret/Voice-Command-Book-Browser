@@ -65,7 +65,7 @@ class SearchTimestamp extends HTMLElement {
     else {
       this.innerHTML = `
         ${this.getElementStyling()}
-        Searched ${getElapsedTimeInUserLanguage(this.elapsedTime)}
+        ${getElapsedTimeInUserLanguage(this.elapsedTime)}
       `;
     }
   }
