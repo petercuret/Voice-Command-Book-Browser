@@ -1,8 +1,10 @@
 import Book from '../models/book';
-const BOOKS_API_URL = 'http://openlibrary.org/search.json?title=harry';
+const BOOKS_API_URL = 'http://openlibrary.org/search.json?title=';
 
-async function fetchBooksFromAPI() {
-  const results = await fetch(BOOKS_API_URL);
+async function fetchBooksFromAPI(searchQuery : string) {
+  const endpoint = `${BOOKS_API_URL}${searchQuery}`;
+  const results = await fetch(endpoint);
+  console.log(endpoint);
   const resultsJSON = await results.json();
   return resultsJSON.docs;
 }
@@ -16,8 +18,8 @@ function mapBooksJSONToModel(booksJSON) {
   return books;
 }
 
-async function getBooks() {
-  const booksJSON = await fetchBooksFromAPI();
+async function getBooks(searchQuery : string) {
+  const booksJSON = await fetchBooksFromAPI(searchQuery);
   const filteredBooksJSON = filterFullText(booksJSON);
   const books = mapBooksJSONToModel(filteredBooksJSON);
   return books;

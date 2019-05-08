@@ -4,7 +4,7 @@ class BookCarousel extends HTMLElement {
   getElementStyling()  {
     const style = `
       <style>
-        ${BookCarousel.elementTitle} {
+        ${BookCarousel.elementTitle} section {
           display: flex;
           padding: 1rem;
           overflow-x: scroll;
@@ -16,7 +16,7 @@ class BookCarousel extends HTMLElement {
   render() {
     this.innerHTML = `
     ${this.getElementStyling()}
-    <section></sction>
+    <section></section>
     `;
   }
 

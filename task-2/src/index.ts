@@ -12,13 +12,19 @@ import './components/search/search-timestamp';
 
 window.addEventListener('load', async () => {
   addCarouselToDom();
-  await addBooksToDom();
-  removeSpinnerFromDom();
 });
 
-window.addEventListener('search', function (event : CustomEvent) {
+window.addEventListener('search', async function (event : CustomEvent) {
   const { searchQuery }  = event.detail;
-  //TODO: Updated fetched books here
+  if(searchQuery) {
+    removeBooksFromDom();
+    addSpinnerToDom();
+    await addBooksToDom(searchQuery);
+    removeSpinnerFromDom();  
+  }
+  else {
+    removeBooksFromDom();
+  }
 }, false);
 
 function getBookComponent(book : Book) {
@@ -35,14 +41,24 @@ function addCarouselToDom() {
   main.appendChild(bookCarousel);
 }
 
-async function addBooksToDom() {
-  const books = await getBooks();
-  const main = document.querySelector('book-carousel');
+function removeBooksFromDom() {
+  const main = document.querySelector('book-carousel section');
+  main.innerHTML = '';
+}
+
+async function addBooksToDom(searchQuery : string) {
+  const books = await getBooks(searchQuery);
+  const main = document.querySelector('book-carousel section');
   
   books.forEach((book : Book) => {
     const bookComponent = getBookComponent(book);
     main.appendChild(bookComponent);
   });
+}
+function addSpinnerToDom(){
+  const spinner = document.createElement('spinner-loading');
+  const main = document.querySelector('main');
+  main.appendChild(spinner);
 }
 
 function removeSpinnerFromDom() {
