@@ -13,7 +13,7 @@ async function search(searchQuery : string) {
   if(searchQuery) {    
     addSpinnerToDom();
     await addBooksToDom(searchQuery);
-    removeSpinnerFromDom();
+    removeSpinnerFromDom();    
   }
 }
 
@@ -40,12 +40,16 @@ async function addBooksToDom(searchQuery : string) {
   });
 }
 function addSpinnerToDom(){
-  const spinner = document.createElement('spinner-loading');
-  const main = document.querySelector('main');
-  main.appendChild(spinner);
+  if(!document.querySelector('spinner-loading')) {
+    const spinner = document.createElement('spinner-loading');
+    const main = document.querySelector('main');
+    main.appendChild(spinner);
+  }
 }
 
 function removeSpinnerFromDom() {
   const spinner = document.querySelector('spinner-loading');
-  spinner.remove();
+  if(spinner) {
+    spinner.remove();
+  }
 }

@@ -8,7 +8,7 @@ class SearchBar extends HTMLElement {
           ${SearchBar.elementTitle} .input-container {
             position: relative;
             display: inline-block;
-            width: 100%;
+            width: calc(100% - 4.5rem);
             max-width: 720px;
             padding-right: 4.5rem;
           }
