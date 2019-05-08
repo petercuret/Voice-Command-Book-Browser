@@ -7,12 +7,19 @@ import BookSingle from './components/book/book-single';
 import './components/book/book-single';
 import './components/bookCarousel/book-carousel';
 import './components/spinnerLoading/spinner-loading';
+import './components/search/search-input';
+import './components/search/search-timestamp';
 
 window.addEventListener('load', async () => {
   addCarouselToDom();
   await addBooksToDom();
   removeSpinnerFromDom();
 });
+
+window.addEventListener('search', function (event : CustomEvent) {
+  const { searchQuery }  = event.detail;
+  //TODO: Updated fetched books here
+}, false);
 
 function getBookComponent(book : Book) {
   const bookSingle = <BookSingle>document.createElement('book-single');
@@ -37,6 +44,7 @@ async function addBooksToDom() {
     main.appendChild(bookComponent);
   });
 }
+
 function removeSpinnerFromDom() {
   const spinner = document.querySelector('spinner-loading');
   spinner.remove();
