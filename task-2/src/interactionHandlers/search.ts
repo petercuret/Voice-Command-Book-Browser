@@ -1,6 +1,8 @@
 import { getBooks } from '../api/books';
 import Book from '../models/book';
 import BookSingle from '../components/book/book-single';
+import SearchTimestamp from '../components/search/search-timestamp';
+
 window.addEventListener('load', () => {
   window.addEventListener('search', async function (event : CustomEvent) {
     const { searchQuery }  = event.detail;
@@ -9,10 +11,11 @@ window.addEventListener('load', () => {
 
   async function search(searchQuery : string) {
     removeBooksFromDom();
+    removeSearchTimestampFromDom();
 
     if(searchQuery) {    
       addSpinnerToDom();
-      await addBooksToDom(searchQuery);
+      await addBooksToDom(searchQuery);      
       removeSpinnerFromDom();    
     }
   }
@@ -38,7 +41,26 @@ window.addEventListener('load', () => {
       const bookComponent = getBookComponent(book);
       main.appendChild(bookComponent);
     });
+
+    addSearchTimestampToDom(books);
   }
+
+  function addSearchTimestampToDom(books: Book[]){
+    if(!document.querySelector('search-timestamp')) {
+      const searchTimeStamp = <SearchTimestamp>document.createElement('search-timestamp');
+      searchTimeStamp.numberOfSearchResults = books.length;
+      const placeholder = document.querySelector('search-timestamp-placeholder');
+      placeholder.appendChild(searchTimeStamp);
+    }
+  }
+
+  function removeSearchTimestampFromDom() {
+    const searchTimeStamp = document.querySelector('search-timestamp');
+    if(searchTimeStamp) {
+      searchTimeStamp.remove();
+    }
+  }  
+
   function addSpinnerToDom(){
     if(!document.querySelector('spinner-loading')) {
       const spinner = document.createElement('spinner-loading');
