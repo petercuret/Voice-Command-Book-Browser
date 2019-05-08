@@ -19,9 +19,9 @@ class SpinnerLoading extends HTMLElement {
           margin-top: -30px;
           margin-left: -30px;
           border-radius: 50%;
-          border: 1px solid #ccc;
-          border-top-color: #07d;
-          animation: spinner .6s linear infinite;
+          border: 3px solid transparent;
+          border-top-color: #06e0a5;
+          animation: spinner .6s ease infinite;
         }
       </style>`;      
     return style

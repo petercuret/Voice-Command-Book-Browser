@@ -12,7 +12,7 @@ class BookAuthor extends HTMLElement {
           line-height: 1.3;
           color: #929292;
           margin: 0.5rem 0 0 0;
-          text-transform: uppercase;
+          text-transform: uppercase;      
         }
       </style>`;      
     return style
@@ -21,7 +21,7 @@ class BookAuthor extends HTMLElement {
   render() {
     this.innerHTML = `
       ${this.getElementStyling()}
-      <h2>${this.dataAuthor}</h2>
+      <h2>${this.dataAuthor ? this.dataAuthor : 'Unknown Author'}</h2>
     `;
   }
 
