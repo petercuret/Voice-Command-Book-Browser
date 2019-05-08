@@ -66,7 +66,7 @@ class BookCarousel extends HTMLElement {
       if (!document.hidden) {
         this.scroll();
       }      
-    }, 3000);
+    }, 5000);
   }
 
   connectedCallback() {

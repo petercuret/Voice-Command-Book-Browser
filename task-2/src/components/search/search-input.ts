@@ -17,8 +17,8 @@ class SearchInput extends HTMLElement {
     return style
   }
   
-  searchFunction = debounce((event) => {
-    const searchQuery = event.target.value;
+  searchFunction = debounce((event : InputEvent) => {
+    const searchQuery = (<HTMLInputElement>event.target).value;
     var searchEvent = new CustomEvent("search", { detail: { searchQuery } });
     window.dispatchEvent(searchEvent);
   }, 300, false);

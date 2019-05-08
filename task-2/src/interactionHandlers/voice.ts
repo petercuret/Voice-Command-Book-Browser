@@ -19,13 +19,13 @@ window.addEventListener('load', () => {
     const results : SpeechRecognitionResult[] = Object.values(event.results);
     const finalResults = getFinalResults(results);
     
-    // Check lastSearchIndex so we don't trigger search with the last command
+    // Check lastSearchIndex so we don't trigger search with the same last command
     if(finalResults.length > lastSearchIndex) {      
       const finalResult = finalResults[lastSearchIndex];
       const transcript = finalResult[0].transcript;
       lastSearchIndex += 1;
 
-      if(isSearchCommand(transcript)) {
+      if(isValidSearchCommand(transcript)) {
         const searchQuery = getSearchQuery(transcript);
         emitVoiceSearchEvent(searchQuery);        
       }
@@ -45,7 +45,7 @@ window.addEventListener('load', () => {
     return finalResults;
   }
 
-  function isSearchCommand(command : string) {
+  function isValidSearchCommand(command : string) {
     const strippedCommand = command.replace(/^\s+|\s+$/g, '');
     const lowerCaseCommand = strippedCommand.toLowerCase();
     return lowerCaseCommand.startsWith(VOICE_SEARCH_TRIGGER);
