@@ -20,7 +20,11 @@ class BookCover extends HTMLElement {
 
   render() {
     const bookCoverURL = getBookCoverURL(this.dataCoverID);
-
+    // We return the book cover image size based on the screen size.
+    // Ideally we use srcset, but in thase case the size is chosen with scripting
+    // We can't use srcset in our situation:
+    // - The API returns images of variable dimensions
+    // - The images sizes are normalized in our layout by height. Height isn't supported in srcset
     this.innerHTML = `
       ${this.getElementStyling()}
       <figure>
