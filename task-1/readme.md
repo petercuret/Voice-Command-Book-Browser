@@ -5,9 +5,5 @@
 `npm install -g tslint`
 `npm install`
 
-## How to compile
-`npm run build`
-`npm run build:watch`
-
 ## Running tests
 `npm run test`
