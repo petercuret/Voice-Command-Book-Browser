@@ -4,7 +4,7 @@ const BOOKS_COVER_PLACEHOLDER_URL = 'https://dummyimage.com/200x300/f5f5f5/f5f5f
 
 type BookCoverSize = 'S'|'M'|'L';
 
-function getBookCoverURL(bookID : number) {
+function getBookCoverURL(bookID : number) : string {
   const size : BookCoverSize = getScreenSize();
 
   if(bookID !== undefined)

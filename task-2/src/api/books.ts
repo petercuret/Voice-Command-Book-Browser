@@ -10,10 +10,20 @@ interface BookJSON {
 
 async function fetchBooksFromAPI(searchQuery : string) {
   const endpoint = `${BOOKS_API_URL}${searchQuery}`;
-  const results = await fetch(endpoint);
-  // TODO: Add error handling here
-  const resultsJSON = await results.json();
-  return resultsJSON.docs;
+
+  const results = await fetch(endpoint)
+  .then((response) => {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+  })
+  .then(response => response.json())
+  .catch((error) => {
+    console.error('Something went wrong while fetching data', error);
+  });
+
+  return results.docs;
 }
 
 function filterFullText(booksJSON : BookJSON[]) {
