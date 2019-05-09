@@ -22,17 +22,31 @@ window.addEventListener('load', () => {
     }
   }
 
-  function getBookComponent(book: Book) {
-    const bookSingle = <BookSingle>document.createElement('book-single');
-    bookSingle.dataBookTitle = book.title;
-    bookSingle.dataAuthor = book.author;
-    bookSingle.dataCoverID = book.coverID;
-    return bookSingle
-  }
-
   function removeBooksFromDom() {
     const main = document.querySelector('book-carousel section');
     main.innerHTML = '';
+  }
+
+  function removeSearchTimestampFromDom() {
+    const searchTimeStamp = document.querySelector('search-timestamp');
+    if (searchTimeStamp) {
+      searchTimeStamp.remove();
+    }
+  }
+
+  function removeSpinnerFromDom() {
+    const spinner = document.querySelector('spinner-loading');
+    if (spinner) {
+      spinner.remove();
+    }
+  }
+
+  function addSpinnerToDom() {
+    if (!document.querySelector('spinner-loading')) {
+      const spinner = document.createElement('spinner-loading');
+      const main = document.querySelector('main');
+      main.appendChild(spinner);
+    }
   }
 
   async function addBooksToDom(searchQuery: string) {
@@ -47,34 +61,20 @@ window.addEventListener('load', () => {
     addSearchTimestampToDom(books);
   }
 
+  function getBookComponent(book: Book) {
+    const bookSingle = <BookSingle>document.createElement('book-single');
+    bookSingle.dataBookTitle = book.title;
+    bookSingle.dataAuthor = book.author;
+    bookSingle.dataCoverID = book.coverID;
+    return bookSingle
+  }
+
   function addSearchTimestampToDom(books: Book[]) {
     if (!document.querySelector('search-timestamp')) {
       const searchTimeStamp = <SearchTimestamp>document.createElement('search-timestamp');
       searchTimeStamp.numberOfSearchResults = books.length;
       const placeholder = document.querySelector('search-timestamp-placeholder');
       placeholder.appendChild(searchTimeStamp);
-    }
-  }
-
-  function removeSearchTimestampFromDom() {
-    const searchTimeStamp = document.querySelector('search-timestamp');
-    if (searchTimeStamp) {
-      searchTimeStamp.remove();
-    }
-  }
-
-  function addSpinnerToDom() {
-    if (!document.querySelector('spinner-loading')) {
-      const spinner = document.createElement('spinner-loading');
-      const main = document.querySelector('main');
-      main.appendChild(spinner);
-    }
-  }
-
-  function removeSpinnerFromDom() {
-    const spinner = document.querySelector('spinner-loading');
-    if (spinner) {
-      spinner.remove();
     }
   }
 

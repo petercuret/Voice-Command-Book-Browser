@@ -6,7 +6,9 @@ function getUserLanguage() {
 function getElapsedTimeInUserLanguage(timeInSeconds: number) {
   const userLanguage = getUserLanguage();
   //@ts-ignore
-  const elapsedTimeFormatter = new Intl.RelativeTimeFormat(userLanguage, { numeric: 'auto' }); // This doesn't seem to be supported in TypesCript (yet)
+  // This doesn't seem to be supported in TypesCript (yet)
+  const elapsedTimeFormatter = new Intl.RelativeTimeFormat(userLanguage, { numeric: 'auto' });
+
   return elapsedTimeFormatter.format(-timeInSeconds, 'second');
 }
 

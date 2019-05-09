@@ -7,13 +7,20 @@ window.addEventListener('load', () => {
   recognition.interimResults = true;
   recognition.continuous = true;
   recognition.lang = 'en-US';
-
   let lastSearchIndex: number;
 
   window.addEventListener('recording', async function (event: CustomEvent) {
     const { isRecording } = event.detail;
     isRecording ? recognition.start() : recognition.stop();
   }, false);
+
+  recognition.onstop = function (event: Event) {
+    lastSearchIndex = 0;
+  }
+
+  recognition.onstart = function (event: Event) {
+    lastSearchIndex = 0;
+  }
 
   recognition.onresult = function (event: SpeechRecognitionEvent) {
     const results: SpeechRecognitionResult[] = Object.values(event.results);
@@ -30,14 +37,6 @@ window.addEventListener('load', () => {
         emitVoiceSearchEvent(searchQuery);
       }
     }
-  }
-
-  recognition.onstop = function (event: Event) {
-    lastSearchIndex = 0;
-  }
-
-  recognition.onstart = function (event: Event) {
-    lastSearchIndex = 0;
   }
 
   function getFinalResults(results: SpeechRecognitionResult[]) {
@@ -64,4 +63,3 @@ window.addEventListener('load', () => {
     }
   }
 });
-

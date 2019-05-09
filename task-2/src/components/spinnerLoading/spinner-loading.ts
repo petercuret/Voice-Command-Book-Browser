@@ -1,6 +1,16 @@
 class SpinnerLoading extends HTMLElement {
   static elementTitle: string = 'spinner-loading';
 
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `
+      ${this.getElementStyling()}
+    `;
+  }
+
   getElementStyling() {
     const style = `
       <style>
@@ -25,16 +35,6 @@ class SpinnerLoading extends HTMLElement {
         }
       </style>`;
     return style
-  }
-
-  render() {
-    this.innerHTML = `
-      ${this.getElementStyling()}
-    `;
-  }
-
-  connectedCallback() {
-    this.render();
   }
 }
 

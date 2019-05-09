@@ -8,6 +8,23 @@ class BookSingle extends HTMLElement {
   dataCoverID: number;
   static elementTitle: string = 'book-single';
 
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `
+      ${this.getElementStyling()}
+    `;
+    const elements: Element[] = [
+      this.getBookCoverElement(this.dataCoverID, this.dataBookTitle),
+      this.getTitleElement(this.dataBookTitle),
+      this.getAuthorElement(this.dataAuthor)
+    ]
+
+    elements.forEach(element => this.appendChild(element));
+  }
+
   getElementStyling() {
     const style = `
       <style>
@@ -19,6 +36,7 @@ class BookSingle extends HTMLElement {
       </style>`;
     return style
   }
+
   getBookCoverElement(dataCoverID: number, dataBookTitle: string) {
     const bookCoverElement = <BookCover>document.createElement(BookCover.elementTitle);
     bookCoverElement.dataCoverID = dataCoverID;
@@ -36,23 +54,6 @@ class BookSingle extends HTMLElement {
     const authorElement = <BookAuthor>document.createElement(BookAuthor.elementTitle);
     authorElement.dataAuthor = dataAuthor;
     return authorElement;
-  }
-
-  render() {
-    this.innerHTML = `
-      ${this.getElementStyling()}
-    `;
-    const elements: Element[] = [
-      this.getBookCoverElement(this.dataCoverID, this.dataBookTitle),
-      this.getTitleElement(this.dataBookTitle),
-      this.getAuthorElement(this.dataAuthor)
-    ]
-
-    elements.forEach(element => this.appendChild(element));
-  }
-
-  connectedCallback() {
-    this.render();
   }
 }
 

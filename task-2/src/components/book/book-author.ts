@@ -2,6 +2,17 @@ class BookAuthor extends HTMLElement {
   dataAuthor: string;
   static elementTitle: string = 'book-author';
 
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `
+      ${this.getElementStyling()}
+      <h2>${this.dataAuthor ? this.dataAuthor : 'Unknown Author'}</h2>
+    `;
+  }
+
   getElementStyling() {
     const style = `
       <style>
@@ -16,17 +27,6 @@ class BookAuthor extends HTMLElement {
         }
       </style>`;
     return style
-  }
-
-  render() {
-    this.innerHTML = `
-      ${this.getElementStyling()}
-      <h2>${this.dataAuthor ? this.dataAuthor : 'Unknown Author'}</h2>
-    `;
-  }
-
-  connectedCallback() {
-    this.render();
   }
 }
 

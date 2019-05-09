@@ -3,6 +3,29 @@ import debounce from '../../utils/debounce';
 class SearchInput extends HTMLElement {
   static elementTitle: string = 'search-input';
 
+  connectedCallback() {
+    this.render();
+    this.bindInputEvent();
+  }
+
+  render() {
+    this.innerHTML = `
+      ${this.getElementStyling()}
+      <input type="text" id="search" name="search" placeholder="Search for books">
+    `;
+  }
+
+  bindInputEvent() {
+    this.querySelector('input').oninput = this.searchFunction;
+  }
+
+  searchFunction = debounce((event: InputEvent) => {
+    const searchQuery = (<HTMLInputElement>event.target).value;
+    const searchEvent = new CustomEvent("search", { detail: { searchQuery } });
+
+    window.dispatchEvent(searchEvent);
+  }, 300, false);
+
   getElementStyling() {
     const style = `
       <style>
@@ -28,28 +51,6 @@ class SearchInput extends HTMLElement {
         }
       </style>`;
     return style
-  }
-
-  searchFunction = debounce((event: InputEvent) => {
-    const searchQuery = (<HTMLInputElement>event.target).value;
-    var searchEvent = new CustomEvent("search", { detail: { searchQuery } });
-    window.dispatchEvent(searchEvent);
-  }, 300, false);
-
-  bindInputEvent() {
-    this.querySelector('input').oninput = this.searchFunction;
-  }
-
-  connectedCallback() {
-    this.render();
-    this.bindInputEvent();
-  }
-
-  render() {
-    this.innerHTML = `
-      ${this.getElementStyling()}
-      <input type="text" id="search" name="search" placeholder="Search for books">
-    `;
   }
 }
 

@@ -2,6 +2,17 @@ class BookTitle extends HTMLElement {
   dataBookTitle: string;
   static elementTitle: string = 'book-title';
 
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `
+    ${this.getElementStyling()}
+    <h1>${this.dataBookTitle}</h1>
+    `;
+  }
+
   getElementStyling() {
     const style = `
       <style>
@@ -15,17 +26,6 @@ class BookTitle extends HTMLElement {
         }
       </style>`;
     return style
-  }
-
-  render() {
-    this.innerHTML = `
-    ${this.getElementStyling()}
-    <h1>${this.dataBookTitle}</h1>
-    `;
-  }
-
-  connectedCallback() {
-    this.render();
   }
 }
 

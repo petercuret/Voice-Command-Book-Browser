@@ -2,6 +2,22 @@
 class SearchBar extends HTMLElement {
   static elementTitle: string = 'search-bar';
 
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `
+      ${this.getElementStyling()}
+      <form autocomplete="off">
+        <span class="input-container">
+          <search-input></search-input>
+          <voice-toggle-button></voice-toggle-button>
+        </span>
+      </form>      
+    `;
+  }
+
   getElementStyling() {
     const style = `
       <style>
@@ -25,22 +41,6 @@ class SearchBar extends HTMLElement {
         }
       </style>`;
     return style
-  }
-
-  render() {
-    this.innerHTML = `
-      ${this.getElementStyling()}
-      <form autocomplete="off">
-        <span class="input-container">
-          <search-input></search-input>
-          <voice-toggle-button></voice-toggle-button>
-        </span>
-      </form>      
-    `;
-  }
-
-  connectedCallback() {
-    this.render();
   }
 }
 

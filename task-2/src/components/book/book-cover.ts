@@ -5,19 +5,8 @@ class BookCover extends HTMLElement {
   dataBookTitle: string;
   static elementTitle: string = 'book-cover';
 
-  getElementStyling() {
-    const style = `
-      <style>
-        ${BookCover.elementTitle} figure {
-          margin: .5rem 0 0 0;
-          background-color: #f5f5f5;
-        }
-        ${BookCover.elementTitle} img {
-          height: 25vw;
-          min-width: 15vw;
-        }        
-      </style>`;
-    return style
+  connectedCallback() {
+    this.render();
   }
 
   render() {
@@ -35,8 +24,19 @@ class BookCover extends HTMLElement {
     `;
   }
 
-  connectedCallback() {
-    this.render();
+  getElementStyling() {
+    const style = `
+      <style>
+        ${BookCover.elementTitle} figure {
+          margin: .5rem 0 0 0;
+          background-color: #f5f5f5;
+        }
+        ${BookCover.elementTitle} img {
+          height: 25vw;
+          min-width: 15vw;
+        }        
+      </style>`;
+    return style
   }
 }
 

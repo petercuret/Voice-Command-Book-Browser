@@ -17,8 +17,12 @@ class SearchTimestamp extends HTMLElement {
     }, 1000);
   }
 
-  resetElapsedTime() {
-    this.elapsedTime = 0;
+  render() {
+    this.innerHTML = `
+      ${this.getElementStyling()}
+      <h1>Found ${this.numberOfSearchResults} books</h1>
+      <p>${getElapsedTimeInUserLanguage(this.elapsedTime)}</p>
+  `;
   }
 
   getElementStyling() {
@@ -53,12 +57,8 @@ class SearchTimestamp extends HTMLElement {
     return style
   }
 
-  render() {
-    this.innerHTML = `
-      ${this.getElementStyling()}
-      <h1>Found ${this.numberOfSearchResults} books</h1>
-      <p>${getElapsedTimeInUserLanguage(this.elapsedTime)}</p>
-  `;
+  resetElapsedTime() {
+    this.elapsedTime = 0;
   }
 }
 
