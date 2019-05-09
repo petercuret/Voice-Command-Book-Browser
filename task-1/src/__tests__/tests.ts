@@ -2,11 +2,11 @@ import { sum, addN } from '../index';
 
 describe('Test sum function', () => {
   it('Sum works', () => {
-    expect(sum(1,2)).toBe(3);
+    expect(sum(1, 2)).toBe(3);
   })
   it('Sum works with negative numbers', () => {
-    expect(sum(0,-3)).toBe(-3);
-  })  
+    expect(sum(0, -3)).toBe(-3);
+  })
 });
 
 describe('Test addN function', () => {
