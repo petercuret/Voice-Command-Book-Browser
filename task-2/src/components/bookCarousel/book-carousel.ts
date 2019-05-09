@@ -1,5 +1,6 @@
 class BookCarousel extends HTMLElement {
   static elementTitle : string = 'book-carousel';
+  intervalID : any;
 
   getElementStyling()  {
     const style = `
@@ -60,8 +61,8 @@ class BookCarousel extends HTMLElement {
     this.scrollToFirstBook();
   }
 
-  addScrollTimeout() {
-    window.setInterval(() => {
+  addScrollInterval() {
+    this.intervalID = setInterval(() => {
       // Scroll if the page is visible (tab is active)
       if (!document.hidden) {
         this.scroll();
@@ -71,7 +72,12 @@ class BookCarousel extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.addScrollTimeout();
+    this.addScrollInterval();
+  }
+
+  resetCarouselInterval() {
+    clearInterval(this.intervalID);
+    this.addScrollInterval();
   }
 }
 

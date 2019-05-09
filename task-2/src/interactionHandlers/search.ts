@@ -1,6 +1,7 @@
 import { getBooks } from '../api/books';
 import Book from '../models/book';
 import BookSingle from '../components/book/book-single';
+import BookCarousel from '../components/BookCarousel/book-carousel';
 import SearchTimestamp from '../components/search/search-timestamp';
 
 window.addEventListener('load', () => {
@@ -16,7 +17,8 @@ window.addEventListener('load', () => {
     if(searchQuery) {    
       addSpinnerToDom();
       await addBooksToDom(searchQuery);      
-      removeSpinnerFromDom();    
+      removeSpinnerFromDom();
+      resetCarousel();
     }
   }
 
@@ -74,5 +76,10 @@ window.addEventListener('load', () => {
     if(spinner) {
       spinner.remove();
     }
+  }
+
+  function resetCarousel() {
+    const carousal = <BookCarousel>document.querySelector('book-carousel');
+    carousal.resetCarouselInterval()
   }
 });
