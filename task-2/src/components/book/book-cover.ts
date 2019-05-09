@@ -3,9 +3,9 @@ import { getBookCoverURL } from '../../api/bookCovers';
 class BookCover extends HTMLElement {
   dataCoverID: number;
   dataBookTitle: string;
-  static elementTitle : string = 'book-cover';
-  
-  getElementStyling()  {
+  static elementTitle: string = 'book-cover';
+
+  getElementStyling() {
     const style = `
       <style>
         ${BookCover.elementTitle} figure {
@@ -16,7 +16,7 @@ class BookCover extends HTMLElement {
           height: 25vw;
           min-width: 15vw;
         }        
-      </style>`;      
+      </style>`;
     return style
   }
 

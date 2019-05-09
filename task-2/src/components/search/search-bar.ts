@@ -1,8 +1,8 @@
 
 class SearchBar extends HTMLElement {
-  static elementTitle : string = 'search-bar';
-  
-  getElementStyling()  {
+  static elementTitle: string = 'search-bar';
+
+  getElementStyling() {
     const style = `
       <style>
           ${SearchBar.elementTitle} {
@@ -23,7 +23,7 @@ class SearchBar extends HTMLElement {
             top: 0;
           }   
         }
-      </style>`;      
+      </style>`;
     return style
   }
 

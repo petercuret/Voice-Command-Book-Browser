@@ -1,8 +1,8 @@
 class BookTitle extends HTMLElement {
   dataBookTitle: string;
-  static elementTitle : string = 'book-title';
+  static elementTitle: string = 'book-title';
 
-  getElementStyling()  {
+  getElementStyling() {
     const style = `
       <style>
         ${BookTitle.elementTitle} h1 {
@@ -13,7 +13,7 @@ class BookTitle extends HTMLElement {
           color: #292929;
           margin: 0.5rem 0 0 0;
         }
-      </style>`;      
+      </style>`;
     return style
   }
 

@@ -6,9 +6,9 @@ class BookSingle extends HTMLElement {
   dataBookTitle: string;
   dataAuthor: string;
   dataCoverID: number;
-  static elementTitle : string = 'book-single';
+  static elementTitle: string = 'book-single';
 
-  getElementStyling()  {
+  getElementStyling() {
     const style = `
       <style>
         ${BookSingle.elementTitle} {
@@ -16,23 +16,23 @@ class BookSingle extends HTMLElement {
           flex-direction: column;
           padding: 1rem;         
         }
-      </style>`;      
+      </style>`;
     return style
   }
-  getBookCoverElement(dataCoverID : number, dataBookTitle : string) {
+  getBookCoverElement(dataCoverID: number, dataBookTitle: string) {
     const bookCoverElement = <BookCover>document.createElement(BookCover.elementTitle);
     bookCoverElement.dataCoverID = dataCoverID;
     bookCoverElement.dataBookTitle = dataBookTitle;
     return bookCoverElement
   }
 
-  getTitleElement(dataBookTitle : string) {
+  getTitleElement(dataBookTitle: string) {
     const bookTitleElement = <BookTitle>document.createElement(BookTitle.elementTitle);
     bookTitleElement.dataBookTitle = dataBookTitle;
     return bookTitleElement;
   }
 
-  getAuthorElement(dataAuthor : string) {
+  getAuthorElement(dataAuthor: string) {
     const authorElement = <BookAuthor>document.createElement(BookAuthor.elementTitle);
     authorElement.dataAuthor = dataAuthor;
     return authorElement;

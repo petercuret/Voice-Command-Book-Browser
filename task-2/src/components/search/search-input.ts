@@ -1,9 +1,9 @@
 import debounce from '../../utils/debounce';
 
 class SearchInput extends HTMLElement {
-  static elementTitle : string = 'search-input';
+  static elementTitle: string = 'search-input';
 
-  getElementStyling()  {
+  getElementStyling() {
     const style = `
       <style>
         ${SearchInput.elementTitle} input {
@@ -26,11 +26,11 @@ class SearchInput extends HTMLElement {
           border-color: #d4d4d4;
           box-shadow: 0 5px 20px -5px rgba(30,75,90,0.3), 0 3px 4px -2px rgba(0,0,0,0.08);
         }
-      </style>`;      
+      </style>`;
     return style
   }
-  
-  searchFunction = debounce((event : InputEvent) => {
+
+  searchFunction = debounce((event: InputEvent) => {
     const searchQuery = (<HTMLInputElement>event.target).value;
     var searchEvent = new CustomEvent("search", { detail: { searchQuery } });
     window.dispatchEvent(searchEvent);

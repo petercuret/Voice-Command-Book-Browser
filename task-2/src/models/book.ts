@@ -1,5 +1,5 @@
 export default class Book {
-  title : string;
+  title: string;
   author: string;
   coverID: number;
 
@@ -11,5 +11,8 @@ export default class Book {
     this.title = title;
     this.author = author;
     this.coverID = coverID;
+
+    // Make this read-only
+    Object.freeze(this);
   }
 }

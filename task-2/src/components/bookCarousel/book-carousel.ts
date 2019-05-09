@@ -1,8 +1,8 @@
 class BookCarousel extends HTMLElement {
-  static elementTitle : string = 'book-carousel';
-  intervalID : any;
+  static elementTitle: string = 'book-carousel';
+  intervalID: any;
 
-  getElementStyling()  {
+  getElementStyling() {
     const style = `
       <style>
         ${BookCarousel.elementTitle} section {
@@ -10,7 +10,7 @@ class BookCarousel extends HTMLElement {
           padding: 1rem;
           overflow-x: scroll;
         }
-      </style>`;      
+      </style>`;
     return style
   }
 
@@ -21,15 +21,15 @@ class BookCarousel extends HTMLElement {
     `;
   }
 
-  isInViewport(element : Element) {
-    const rectangle : DOMRect = <DOMRect>element.getBoundingClientRect();
-    const viewportWidth : number = window.innerWidth;
+  isInViewport(element: Element) {
+    const rectangle: DOMRect = <DOMRect>element.getBoundingClientRect();
+    const viewportWidth: number = window.innerWidth;
     const rightSideX = (rectangle.x + rectangle.width) - 1;
     return rightSideX < (viewportWidth);
   }
 
-  scrollToBook(book : Element) {
-    book.scrollIntoView({behavior: "smooth", block: "end", inline: "start"});
+  scrollToBook(book: Element) {
+    book.scrollIntoView({ behavior: "smooth", block: "end", inline: "start" });
   }
 
   getBookElements() {
@@ -39,19 +39,19 @@ class BookCarousel extends HTMLElement {
   scrollToFirstBook() {
     const books = this.getBookElements();
 
-    if(books && books.length > 0) {
+    if (books && books.length > 0) {
       const firstBook = books[0];
-      this.scrollToBook(firstBook); 
-     }    
+      this.scrollToBook(firstBook);
+    }
   }
 
   // TODO: Scroll can probably be implemented a bit nicer, revisit if there's time
   scroll() {
     const books = this.getBookElements();
 
-    for(let i = 0; i < books.length; i++) {
+    for (let i = 0; i < books.length; i++) {
       const book = books[i];
-      if(!this.isInViewport(book)) {
+      if (!this.isInViewport(book)) {
         this.scrollToBook(book);
         return;
       }
@@ -66,7 +66,7 @@ class BookCarousel extends HTMLElement {
       // Scroll if the page is visible (tab is active)
       if (!document.hidden) {
         this.scroll();
-      }      
+      }
     }, 5000);
   }
 

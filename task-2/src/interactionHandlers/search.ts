@@ -5,24 +5,24 @@ import BookCarousel from '../components/BookCarousel/book-carousel';
 import SearchTimestamp from '../components/search/search-timestamp';
 
 window.addEventListener('load', () => {
-  window.addEventListener('search', async function (event : CustomEvent) {
-    const { searchQuery }  = event.detail;
+  window.addEventListener('search', async function (event: CustomEvent) {
+    const { searchQuery } = event.detail;
     search(searchQuery);
   }, false);
 
-  async function search(searchQuery : string) {
+  async function search(searchQuery: string) {
     removeBooksFromDom();
     removeSearchTimestampFromDom();
 
-    if(searchQuery) {    
+    if (searchQuery) {
       addSpinnerToDom();
-      await addBooksToDom(searchQuery);      
+      await addBooksToDom(searchQuery);
       removeSpinnerFromDom();
       resetCarousel();
     }
   }
 
-  function getBookComponent(book : Book) {
+  function getBookComponent(book: Book) {
     const bookSingle = <BookSingle>document.createElement('book-single');
     bookSingle.dataBookTitle = book.title;
     bookSingle.dataAuthor = book.author;
@@ -35,11 +35,11 @@ window.addEventListener('load', () => {
     main.innerHTML = '';
   }
 
-  async function addBooksToDom(searchQuery : string) {
+  async function addBooksToDom(searchQuery: string) {
     const books = await getBooks(searchQuery);
     const main = document.querySelector('book-carousel section');
-    
-    books.forEach((book : Book) => {
+
+    books.forEach((book: Book) => {
       const bookComponent = getBookComponent(book);
       main.appendChild(bookComponent);
     });
@@ -47,8 +47,8 @@ window.addEventListener('load', () => {
     addSearchTimestampToDom(books);
   }
 
-  function addSearchTimestampToDom(books: Book[]){
-    if(!document.querySelector('search-timestamp')) {
+  function addSearchTimestampToDom(books: Book[]) {
+    if (!document.querySelector('search-timestamp')) {
       const searchTimeStamp = <SearchTimestamp>document.createElement('search-timestamp');
       searchTimeStamp.numberOfSearchResults = books.length;
       const placeholder = document.querySelector('search-timestamp-placeholder');
@@ -58,13 +58,13 @@ window.addEventListener('load', () => {
 
   function removeSearchTimestampFromDom() {
     const searchTimeStamp = document.querySelector('search-timestamp');
-    if(searchTimeStamp) {
+    if (searchTimeStamp) {
       searchTimeStamp.remove();
     }
-  }  
+  }
 
-  function addSpinnerToDom(){
-    if(!document.querySelector('spinner-loading')) {
+  function addSpinnerToDom() {
+    if (!document.querySelector('spinner-loading')) {
       const spinner = document.createElement('spinner-loading');
       const main = document.querySelector('main');
       main.appendChild(spinner);
@@ -73,7 +73,7 @@ window.addEventListener('load', () => {
 
   function removeSpinnerFromDom() {
     const spinner = document.querySelector('spinner-loading');
-    if(spinner) {
+    if (spinner) {
       spinner.remove();
     }
   }

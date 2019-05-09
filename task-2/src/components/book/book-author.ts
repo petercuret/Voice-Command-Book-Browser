@@ -1,8 +1,8 @@
 class BookAuthor extends HTMLElement {
   dataAuthor: string;
-  static elementTitle : string = 'book-author';
+  static elementTitle: string = 'book-author';
 
-  getElementStyling()  {
+  getElementStyling() {
     const style = `
       <style>
         ${BookAuthor.elementTitle} h2 {
@@ -14,7 +14,7 @@ class BookAuthor extends HTMLElement {
           margin: 0.5rem 0 0 0;
           text-transform: uppercase;      
         }
-      </style>`;      
+      </style>`;
     return style
   }
 

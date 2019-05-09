@@ -1,7 +1,7 @@
 class SpinnerLoading extends HTMLElement {
-  static elementTitle : string = 'spinner-loading';
+  static elementTitle: string = 'spinner-loading';
 
-  getElementStyling()  {
+  getElementStyling() {
     const style = `
       <style>
         @keyframes spinner {
@@ -23,7 +23,7 @@ class SpinnerLoading extends HTMLElement {
           border-top-color: #06e0a5;
           animation: spinner .6s ease infinite;
         }
-      </style>`;      
+      </style>`;
     return style
   }
 

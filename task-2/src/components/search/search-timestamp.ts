@@ -1,17 +1,17 @@
 import { getElapsedTimeInUserLanguage } from '../../utils/internationalisation';
 
 class SearchTimestamp extends HTMLElement {
-  elapsedTime : number = 0;
-  numberOfSearchResults : number;
-  static elementTitle : string = 'search-timestamp';
+  elapsedTime: number = 0;
+  numberOfSearchResults: number;
+  static elementTitle: string = 'search-timestamp';
 
   connectedCallback() {
-    this.addRenderTimeout();   
+    this.addRenderTimeout();
     this.render();
   }
 
   addRenderTimeout() {
-    window.setInterval(() => {         
+    window.setInterval(() => {
       this.elapsedTime += 1;
       this.render();
     }, 1000);
@@ -21,7 +21,7 @@ class SearchTimestamp extends HTMLElement {
     this.elapsedTime = 0;
   }
 
-  getElementStyling()  {
+  getElementStyling() {
     const style = `
       <style>
       ${SearchTimestamp.elementTitle} {
@@ -49,7 +49,7 @@ class SearchTimestamp extends HTMLElement {
           color: #292929;
           margin: 0;
         }        
-      </style>`;      
+      </style>`;
     return style
   }
 
