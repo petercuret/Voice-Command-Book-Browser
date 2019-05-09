@@ -24,7 +24,9 @@ window.addEventListener('load', () => {
 
   function removeBooksFromDom() {
     const main = document.querySelector('book-carousel section');
-    main.innerHTML = '';
+    if (main) {
+      main.innerHTML = '';
+    }
   }
 
   function removeSearchTimestampFromDom() {
@@ -53,10 +55,12 @@ window.addEventListener('load', () => {
     const books = await getBooks(searchQuery);
     const main = document.querySelector('book-carousel section');
 
-    books.forEach((book: Book) => {
-      const bookComponent = getBookComponent(book);
-      main.appendChild(bookComponent);
-    });
+    if (main) {
+      books.forEach((book: Book) => {
+        const bookComponent = getBookComponent(book);
+        main.appendChild(bookComponent);
+      });
+    }
 
     addSearchTimestampToDom(books);
   }
@@ -80,6 +84,8 @@ window.addEventListener('load', () => {
 
   function resetCarousel() {
     const carousal = <BookCarousel>document.querySelector('book-carousel');
-    carousal.resetCarouselInterval()
+    if (carousal) {
+      carousal.resetCarouselInterval()
+    }
   }
 });

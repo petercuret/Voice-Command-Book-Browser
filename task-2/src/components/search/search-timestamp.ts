@@ -56,10 +56,6 @@ class SearchTimestamp extends HTMLElement {
       </style>`;
     return style
   }
-
-  resetElapsedTime() {
-    this.elapsedTime = 0;
-  }
 }
 
 customElements.define(SearchTimestamp.elementTitle, SearchTimestamp);

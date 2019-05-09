@@ -59,7 +59,10 @@ window.addEventListener('load', () => {
     if (searchQuery) {
       const voiceSearchEvent = new CustomEvent("search", { detail: { searchQuery } });
       window.dispatchEvent(voiceSearchEvent);
-      document.querySelector('input').value = searchQuery;
+      const input = document.querySelector('input');
+      if (input) {
+        document.querySelector('input').value = searchQuery;
+      }
     }
   }
 });

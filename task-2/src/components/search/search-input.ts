@@ -16,10 +16,10 @@ class SearchInput extends HTMLElement {
   }
 
   bindInputEvent() {
-    this.querySelector('input').oninput = this.searchFunction;
+    this.querySelector('input').oninput = this.dispatchSearchEvent;
   }
 
-  searchFunction = debounce((event: InputEvent) => {
+  dispatchSearchEvent = debounce((event: InputEvent) => {
     const searchQuery = (<HTMLInputElement>event.target).value;
     const searchEvent = new CustomEvent("search", { detail: { searchQuery } });
 

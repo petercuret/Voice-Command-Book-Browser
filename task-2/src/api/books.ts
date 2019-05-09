@@ -21,6 +21,7 @@ async function fetchBooksFromAPI(searchQuery: string) {
     .then(response => response.json())
     .catch((error) => {
       console.error('Something went wrong while fetching data', error);
+      return [];
     });
 
   return results.docs;

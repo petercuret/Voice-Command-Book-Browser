@@ -7,7 +7,7 @@ type BookCoverSize = 'S' | 'M' | 'L';
 function getBookCoverURL(bookID: number): string {
   const size: BookCoverSize = getScreenSize();
 
-  if (bookID !== undefined) {
+  if (bookID) {
     return `${BOOKS_COVER_API_URL}/${bookID}-${size}.jpg`;
   }
   return BOOKS_COVER_PLACEHOLDER_URL;

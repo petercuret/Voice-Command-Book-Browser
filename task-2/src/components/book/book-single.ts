@@ -16,6 +16,7 @@ class BookSingle extends HTMLElement {
     this.innerHTML = `
       ${this.getElementStyling()}
     `;
+
     const elements: Element[] = [
       this.getBookCoverElement(this.dataCoverID, this.dataBookTitle),
       this.getTitleElement(this.dataBookTitle),
