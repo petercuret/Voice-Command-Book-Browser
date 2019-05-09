@@ -26,10 +26,6 @@ async function fetchBooksFromAPI(searchQuery : string) {
   return results.docs;
 }
 
-function filterFullText(booksJSON : BookJSON[]) {
-  return booksJSON.filter(bookJSON => bookJSON.has_fulltext);
-}
-
 function mapBooksJSONToModel(booksJSON : BookJSON[]) {
   const books = booksJSON.map(result => new Book(result.title, result.author_name, result.cover_i))
   return books;
@@ -37,8 +33,7 @@ function mapBooksJSONToModel(booksJSON : BookJSON[]) {
 
 async function getBooks(searchQuery : string) {
   const booksJSON = await fetchBooksFromAPI(searchQuery);
-  const filteredBooksJSON = filterFullText(booksJSON);
-  const books = mapBooksJSONToModel(filteredBooksJSON);
+  const books = mapBooksJSONToModel(booksJSON);
   return books;
 }
 
